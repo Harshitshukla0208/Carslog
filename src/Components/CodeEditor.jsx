@@ -6,6 +6,7 @@ import LanguageSelector from './LanguageSelector';
 import { CODE_SNIPPETS } from '../langsupport';
 import logo from '../assets/logo.svg'
 import './css/CodeEditor.css'
+import OutputPanel from './OutputPanel';
 
 const CodeEditor = () => {
 
@@ -27,23 +28,26 @@ const CodeEditor = () => {
         <Box minH="100vh" bg="#000" color="gray.500" px={6} py={8}>
             <HStack spacing={4}>
                 <Box w="50%">
-                <Link to='/' className="logo-container">
-                    <div className='logo'>
-                        <img src={logo} alt="Logo" className="logo-img" />
-                        <h1 className="logo-text">CodeLogs</h1>
+
+                    <div className='logo-container'>
+                        <Link to='/' className='logo'>
+                            <img src={logo} alt="Logo" className="logo-img" />
+                            <h1 className="logo-text">CodeLogs</h1>
+                        </Link>
                     </div>
-                </Link>
+                
                     <LanguageSelector language={language} onSelect={onSelect} />
                     <Editor
                         height="90vh" 
                         theme='vs-dark'
                         language={language}
-                        defaultValue="// some comment" 
+                        defaultValue={CODE_SNIPPETS[language]}
                         onMount={onMount}
                         value={value}
                         onChange={(value) => setvalue(value)}
                     />
                 </Box>
+                <OutputPanel/>
             </HStack>
             
         </Box>
