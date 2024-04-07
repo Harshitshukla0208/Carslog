@@ -5,5 +5,5 @@ const theme = extendTheme({
         initialColorMode: "dark",
         useSystemColorMode: false,
     },
-});
+})
 export default theme;
