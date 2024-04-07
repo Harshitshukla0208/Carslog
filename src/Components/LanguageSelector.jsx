@@ -14,18 +14,30 @@ const languages = Object.entries(LANGUAGE_VERSIONS);
 
 const LanguageSelector = ({language, onSelect}) => {
     return (
-        <Box>
+        <Box ml={2} mb={4}>
             <Text mb={2} fontSize='lg'>Language: </Text>
-            <Menu>
+            <Menu isLazy>
                 <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="blue">
                     {language}
                 </MenuButton>
-                <MenuList backgroundColor="#383b40">
-                    {languages.map(([language, version]) => {
+                <MenuList bg="black">
+                    {languages.map(([lang]) => {
                         return (
-                            <MenuItem backgroundColor="#383b40" key={language} onClick={() => onSelect(language)}>
-                                <Text color="white">
-                                    {language}&nbsp;
+                            <MenuItem key={lang}
+                                color = {
+                                    lang === language ? "blue.400" : ""
+                                }
+                                bg = {
+                                    lang === language ? "gray.900" : "transparent"
+                                }
+                                _hover = {{
+                                    color:"blue.400",
+                                    bg:"gray.900"
+                                }}
+                                onClick={() => onSelect(lang)}
+                            >
+                                <Text>
+                                    {lang}&nbsp;
                                 </Text>
                             </MenuItem>
                         );
