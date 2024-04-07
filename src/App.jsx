@@ -1,11 +1,15 @@
-import { Box } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import CodeEditor from "./Components/CodeEditor";
+import Home from "./Components/Home";
 
 function App() {
   return (
-    <Box minH="100vh" bg="#000" color="gray.500" px={6} py={8}>
-      <CodeEditor />
-    </Box>
+    <BrowserRouter>
+      <Routes>
+        <Route path = '/' element = {<Home />} />
+        <Route path = '/editor' element = {<CodeEditor />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
