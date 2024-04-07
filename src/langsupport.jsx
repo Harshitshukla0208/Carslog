@@ -1,17 +1,12 @@
 export const LANGUAGE_VERSIONS = {
     javascript: "18.15.0",
     typescript: "5.0.3",
-    cpp: "17.0.0",
-    c: "11.0.0",
     java: "15.0.2",
     python: "3.10.0",
     csharp: "6.12.0",
     php: "8.2.3",
-    ruby: "3.1.0",
-    go: "1.18.0",
-    rust: "1.58.0",
-    kotlin: "1.6.10",
-    swift: "5.6.0",
+    cpp: "17.0.0",
+    c: "11.0.0",
 };
 
 export const CODE_SNIPPETS = {
