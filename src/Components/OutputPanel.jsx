@@ -1,23 +1,35 @@
 import React, { useState } from 'react'
-import {Box, Button, Text} from "@chakra-ui/react"
+import {Box, Button, useToast} from "@chakra-ui/react"
 import { executeCode } from '../api';
 
 const OutputPanel = ({editorRef, language}) => {
+
+    const toast = useToast();
+
     const [output, setOutput] = useState(null);
-    
+    const [isLoading, setIsLoading] = useState(false);
     const runCode = async() => {
         const sourceCode = editorRef.current.getValue();
         if(!sourceCode) return;
         try {
+            setIsLoading(true);
             const {run:result} = await executeCode(language, sourceCode);
             setOutput(result.output)
         } catch (error) {
-            
+            toast({
+                title:"An error occured.",
+                description:error.message || "Unable to run code",
+                status:"error",
+                duration:6000,
+            })
+        }
+        finally{
+            setIsLoading(false);
         }
     }
     return (
         <Box w="50%">
-            <Button variant='outline' colorScheme='green' mb={4} mt={12} onClick={runCode}>
+            <Button variant='outline' colorScheme='green' mb={4} mt={12} isLoading={isLoading} onClick={runCode}>
                 Run Code
             </Button>
             <Box
