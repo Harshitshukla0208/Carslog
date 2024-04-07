@@ -12,7 +12,7 @@ const CodeEditor = () => {
 
     const editorRef = useRef();
     const [value, setvalue] = useState("");
-    const [language, setlanguage] = useState("Javascript");
+    const [language, setlanguage] = useState("javascript");
     
     const onMount = (editor) => {
         editorRef.current = editor;
