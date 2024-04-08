@@ -18,6 +18,7 @@ const CodeEditor = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [hasRun, setHasRun] = useState(false); // Track whether the code has been executed
+    const [showOutput, setShowOutput] = useState(false); // Track whether to show output
 
     const onMount = (editor) => {
         editorRef.current = editor;
@@ -38,6 +39,7 @@ const CodeEditor = () => {
             setOutput(result.output.split("\n"));
             result.stderr ? setIsError(true) : setIsError(false);
             setHasRun(true); // Update the state when code has been executed
+            setShowOutput(true); // Show output after running code
         } catch (error) {
             toast({
                 title: "An error occurred.",
@@ -50,6 +52,12 @@ const CodeEditor = () => {
         }
     };
 
+    const toggleOutput = () => {
+        setShowOutput(!showOutput);
+    };
+
+    const isMobileView = window.innerWidth <= 500;
+
     return (
         <Box minH="100vh" bg="#000" color="gray.500" px={6} py={8} className='main-box'>
             <div className='logo-container'>
@@ -60,36 +68,80 @@ const CodeEditor = () => {
             </div>
             <div className='buttons'>
                 <LanguageSelector language={language} onSelect={onSelect} />
+
+                {isMobileView ? (
+                    showOutput && (
+                        <Button className='return-btn' onClick={toggleOutput} colorScheme="blue">Return to Editor</Button>
+                    )
+                ) : null}
+                
                 <Button className='runcode-btn' variant='outline' colorScheme='green' isLoading={isLoading} onClick={runCode}>
                     Run Code
                 </Button>
+
+                
+
             </div>
-            <Box className='editor-boxes'>
-                <Editor
-                    className={hasRun ? 'left' : 'left-side'} // Conditionally set the class name
-                    height="90vh"
-                    width="50%"
-                    theme='vs-dark'
-                    language={language}
-                    defaultValue={CODE_SNIPPETS[language]}
-                    onMount={onMount}
-                    value={value}
-                    onChange={(value) => setValue(value)}
-                />
-                <Box
-                    className={hasRun ? 'right' : 'right-side'} // Conditionally set the class name
-                    height="90vh"
-                    p={2}
-                    color={isError ? "red.400" : ""}
-                    border="1px solid"
-                    borderRadius={4}
-                    borderColor={isError ? "red.500" : "#333"}
-                >
-                    {output ? output.map((line, i) => <Text key={i}>{line}</Text>) : 'Click "Run Code" to see the output here'}
+            {isMobileView ? (
+                <Box className='editor-boxes'>
+                    {!showOutput && (
+                        <Editor
+                            className={hasRun ? 'left' : 'left-side'} // Conditionally set the class name
+                            height="90vh"
+                            width={isMobileView ? "100%" : "50%"}
+                            theme='vs-dark'
+                            language={language}
+                            defaultValue={CODE_SNIPPETS[language]}
+                            onMount={onMount}
+                            value={value}
+                            onChange={(value) => setValue(value)}
+                        />
+                    )}
+                    {showOutput && (
+                        <Box
+                            className='right' // Conditionally set the class name
+                            height="90vh"
+                            p={2}
+                            color={isError ? "red.400" : ""}
+                            border="1px solid"
+                            borderRadius={4}
+                            borderColor={isError ? "red.500" : "#333"}
+                            width={isMobileView ? "100%" : "50%"}
+                        >
+                            {output ? output.map((line, i) => <Text key={i}>{line}</Text>) : 'Click "Run Code" to see the output here'}
+                        </Box>
+                    )}
                 </Box>
-            </Box>
+            ) : (
+                <Box className='editor-boxes'>
+                    <Editor
+                        className={hasRun ? 'left' : 'left-side'} // Conditionally set the class name
+                        height="90vh"
+                        width={isMobileView ? "100%" : "50%"}
+                        theme='vs-dark'
+                        language={language}
+                        defaultValue={CODE_SNIPPETS[language]}
+                        onMount={onMount}
+                        value={value}
+                        onChange={(value) => setValue(value)}
+                    />
+                    <Box
+                        className='right' // Conditionally set the class name
+                        height="90vh"
+                        p={2}
+                        color={isError ? "red.400" : ""}
+                        border="1px solid"
+                        borderRadius={4}
+                        borderColor={isError ? "red.500" : "#333"}
+                        width={isMobileView ? "100%" : "50%"}
+                    >
+                        {output ? output.map((line, i) => <Text key={i}>{line}</Text>) : 'Click "Run Code" to see the output here'}
+                    </Box>
+                </Box>
+            )}
         </Box>
     );
+    
 };
 
 export default CodeEditor;

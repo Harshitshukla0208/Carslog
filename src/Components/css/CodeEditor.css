@@ -46,3 +46,12 @@
 .right-side{
     width: 50%;
 }
+
+@media(max-width: 500px){
+    .runcode-btn{
+        margin-left: 25px;
+    }
+    .return-btn{
+        margin-left: 25px;
+    }
+}
