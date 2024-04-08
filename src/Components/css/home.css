@@ -63,4 +63,7 @@
         height: auto; /* Maintain aspect ratio */
         margin-bottom: 20px;
     }
+    .title-logo{
+        margin-left: -35px;
+    }
 }

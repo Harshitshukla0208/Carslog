@@ -33,7 +33,7 @@ const Home = () => {
                     align="center" 
                     mt={32} 
                 >
-                    <p>Created By: Harshit Shukla</p>
+                    <p>Created by: Harshit Shukla</p>
                     <Flex mt={3}>
                         <a href="https://github.com/Harshitshukla0208/Codelogs" target="_blank" rel="noopener noreferrer">
                             <img src={githubLogo} alt="GitHub Logo" width="30" height="30" style={{ marginRight: '10px' }} />

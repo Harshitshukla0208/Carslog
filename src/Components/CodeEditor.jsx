@@ -71,10 +71,14 @@ const CodeEditor = () => {
 
                 {isMobileView ? (
                     showOutput && (
-                        <Button className='return-btn' onClick={toggleOutput} colorScheme="blue">Return to Editor</Button>
+                        <Button className='return-btn' onClick={toggleOutput} colorScheme="blue" style={{ fontSize: '13px' }}>
+                            Return
+                        </Button>
                     )
                 ) : null}
-                
+
+
+
                 <Button className='runcode-btn' variant='outline' colorScheme='green' isLoading={isLoading} onClick={runCode}>
                     Run Code
                 </Button>
