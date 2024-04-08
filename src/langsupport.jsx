@@ -5,8 +5,6 @@ export const LANGUAGE_VERSIONS = {
     python: "3.10.0",
     csharp: "6.12.0",
     php: "8.2.3",
-    cpp: "17.0.0",
-    c: "11.0.0",
 };
 
 export const CODE_SNIPPETS = {
