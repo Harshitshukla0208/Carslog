@@ -2,11 +2,9 @@
     display: flex;
     align-items: center;
 }
-
 .logo{
     display: flex;
 }
-
 .logo-img {
     width: 40px; /* Adjust as needed */
     height: auto; /* Maintain aspect ratio */
@@ -14,7 +12,6 @@
     margin-bottom: 25px;
     margin-top: -15px;
 }
-
 .logo-text {
     font-size: 30px; /* Adjust font size */
     margin-bottom: 25px;
@@ -22,8 +19,30 @@
     font-weight: bold;
     color: #fff; /* Adjust text color */
 }
-
 .language-selector-container{
     display: flex;
-    
+}
+
+.buttons{
+    display: flex;
+}
+.runcode-btn{
+    margin-left: 41.6%;
+}
+
+.editor-boxes{
+    display: flex;
+    gap: 20px;
+}
+.left{
+    width: 50%;
+}
+.left-side{
+    width: 50%;
+}
+.right{
+    width: 50%;
+}
+.right-side{
+    width: 50%;
 }
