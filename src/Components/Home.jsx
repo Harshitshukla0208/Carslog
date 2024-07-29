@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Button, Flex } from '@chakra-ui/react'; 
-import backgroundImage from '../assets/bg3.png'; 
+import backgroundImage from '../assets/2.svg'; 
 import logo from '../assets/logo.svg';
 import githubLogo from '../assets/github-logo.png'; 
 import linkedinLogo from '../assets/linkedin-logo.png'; 
